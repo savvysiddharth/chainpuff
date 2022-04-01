@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>
+      chainPuff
+    </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../common/grid.css">
+    <script src="../../common/web3.min.js"></script>
+  </head>
+  <body>
+    <h1 class="hero-title">chainPuff v0.1 <span class="hero-subtitle">(beta)</span></h1>
+    <div class="node-adder">
+      Enter Node:
+      <input type="text" id="nodeAddr" placeholder="Eg: http://127.0.0.1:22000" value="http://127.0.0.1:22000">
+    </div>
+
+    <div>
+      <div class="main row">
+        <div class="col span-1-of-2 transaction-modifier">
+          <h3>Fund Transfer Transaction Payload</h3> <br>
+          <textarea class="txn-editor" id="txnInput"></textarea>
+        </div>
+        <div class="col span-1-of-2 transaction-load">
+          <div class="load-input-container">
+            <div class="load-input-box">
+              Number of Transactions: <br>
+              <input type="number" id="numTxns" value="10">
+            </div>
+            <div class="load-input-box">
+              Number of Batches: <br>
+              <input type="number" id="numBatches" value="1">
+            </div>
+            <div class="load-input-box">
+              Inter-Txn Delay: (in ms)<br>
+              <input type="number" id="txnDelay" value="10">
+            </div>
+            <div class="load-input-box">
+              Inter-Batch Delay: (in ms)<br>
+              <input type="number" id="batchDelay" value="2000" min="1000">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="genTxnBtn">
+        <button id="genTxnLoad">Generate Fund Transfer Load</button>
+      </div>
+      <div class="stats-box">
+        Average Latency : <span id="avglatency"></span> <br>
+        Throughput : <span id="throughput"></span> <br>
+        Average Gas Used per Block : <span id="avggas"></span> <br>
+        Total Gas Used : <span id="totalgas"></span> <br>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>

@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+  background-color: rgb(41, 41, 41);
+  color: rgb(236, 236, 236);
+}
+
+.hero-title {
+  position: absolute;
+  color: rgb(165, 165, 165);
+  left: 10px;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+}
+
+.node-adder {
+  margin: 20px auto;
+  width: 200px;
+  background-color: rgb(99, 63, 63);
+  padding: 8px;
+}
+
+.node-adder input {
+  background-color: rgb(37, 24, 24);
+  border: none;
+  color: white;
+  padding: 5px;
+}
+
+.main {
+  width: 98%;
+  margin: 0 auto;
+}
+
+.transaction-modifier {
+  background-color: rgb(95, 68, 29);
+  padding: 9px;
+}
+
+.txn-editor {
+  width: 100%;
+  height: 200px;
+  padding: 4px;
+  color: rgb(71, 211, 164);
+  background-color: rgb(15, 15, 15);
+  border: none;
+  /* outline: none; */
+}
+
+.transaction-load {
+  background-color: rgb(30, 70, 88);
+  padding: 5px;
+  height: 257px;
+}
+
+.load-input-container {
+  /* background-color: red; */
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.load-input-box {
+  margin-bottom: 20px;
+}
+
+.load-input-box input {
+  background-color: rgb(25, 32, 32);
+  color: white;
+  border: none;
+  padding: 5px;
+}
+
+.genTxnBtn {
+  margin: 10px auto;
+  width: fit-content;
+}
+
+.genTxnBtn button {
+  padding: 4px 20px;
+  /* border:none; */
+  color: aquamarine;
+  background-color: rgb(5, 53, 45);
+}
+
+.stats-box {
+  background-color: rgb(63, 63, 63);
+  padding: 9px;
+  width: 500px;
+  margin: 10px;
+  line-height: 30px;
+}
+
+.stats-box span {
+  background-color: black;
+  padding: 3px;
+  color: rgb(46, 180, 46);
+}
