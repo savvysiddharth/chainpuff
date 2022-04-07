@@ -103,3 +103,7 @@ html {
   padding: 3px;
   color: rgb(46, 180, 46);
 }
+
+.chart-container {
+  padding: 10px;
+}

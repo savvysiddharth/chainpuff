@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../../common/grid.css">
     <script src="../../common/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
   </head>
   <body>
     <h1 class="hero-title">chainPuff v0.1 <span class="hero-subtitle">(beta)</span></h1>
@@ -36,7 +37,7 @@
             </div>
             <div class="load-input-box">
               Inter-Batch Delay: (in ms)<br>
-              <input type="number" id="batchDelay" value="2000" min="1000">
+              <input type="number" id="batchDelay" value="1000" min="1000">
             </div>
           </div>
         </div>
@@ -44,11 +45,18 @@
       <div class="genTxnBtn">
         <button id="genTxnLoad">Generate Fund Transfer Load</button>
       </div>
-      <div class="stats-box">
-        Average Latency : <span id="avglatency"></span> <br>
-        Throughput : <span id="throughput"></span> <br>
-        Average Gas Used per Block : <span id="avggas"></span> <br>
-        Total Gas Used : <span id="totalgas"></span> <br>
+      <div class="row">
+        <div class="col span-1-of-2">
+          <div class="stats-box">
+            Average Latency : <span id="avglatency"></span> <br>
+            Throughput : <span id="throughput"></span> <br>
+            Average Gas Used per Block : <span id="avggas"></span> <br>
+            Total Gas Used : <span id="totalgas"></span> <br>
+          </div>
+        </div>
+        <div class="chart-container col span-1-of-2">
+          <canvas id="myChart"></canvas>
+        </div>
       </div>
     </div>
   </body>
