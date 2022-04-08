@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>
+      chainPuff
+    </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../common/grid.css">
+    <script src="../../common/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+  </head>
+  <body>
+    <h1 class="hero-title">chainPuff v0.1 <span class="hero-subtitle">(beta)</span></h1>
+    <div class="node-adder">
+      Enter Node:
+      <input type="text" id="nodeAddr" placeholder="Eg: http://127.0.0.1:22000" value="http://127.0.0.1:22000">
+    </div>
+
+    <div>
+      <div class="main row">
+        <div class="col span-1-of-2 transaction-modifier">
+          Upload Solidity Files <br><br>
+          <input type="file">
+        </div>
+        <div class="col span-1-of-2 transaction-load">
+          block 2
+        </div>
+      </div>
+      <div class="genTxnBtn">
+        <button id="genTxnLoad">Deploy Contracts</button>
+      </div>
+      <div class="row">
+        <div class="col span-1-of-2">
+          block 3
+        </div>
+        <div class="col span-1-of-2">
+          block 4
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>
