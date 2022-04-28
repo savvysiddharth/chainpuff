@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>
+      chainPuff
+    </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../common/grid.css">
+    <script src="../../common/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  </head>
+  <body>
+    <h1 class="hero-title">chainPuff v0.1 <span class="hero-subtitle">(beta)</span></h1>
+    <div class="node-adder">
+      Enter Node:
+      <input type="text" id="nodeAddr" placeholder="Eg: http://127.0.0.1:22000" value="http://127.0.0.1:22000">
+    </div>
+
+    <div>
+      <div class="main row">
+        <div class="col span-1-of-2 upload-contract">
+          Upload Smart Contract <br><br>
+          <div class="contract-input">
+            <div id="dropArea">
+              <span id="dragText">Drag and drop your solidity file here...</span>
+            </div>
+            <input id="contractFileInput" type="file">
+          </div>
+          <br>
+          <button class="btn" id="compileContract">Compile Contract</button>
+        </div>
+        <div class="col span-1-of-2 compile-response">
+          Compilation Result <br><br>
+          <div class="compile-result-box" id="compileResBox">
+          </div>
+        </div>
+      </div>
+      
+      <div class="main row">
+        <div class="col span-1-of-2 transaction-modifier">
+          <h3>Contract Deployment Options</h3> <br>
+          Primary deployment parameters:
+          <textarea class="input-editor" id="contractDeployInput"></textarea> <br><br>
+          Constructor Initilizer Arguments:
+          <textarea class="input-editor" id="contractArguments"></textarea>
+        </div>
+        <div class="col span-1-of-2">
+          <div class="genTxnBtn">
+            <button id="deployContract">Deploy Contract</button>
+          </div>
+          <div id="deployResult">
+            <h4>
+              Contract Address:
+            </h4> <br>
+            <p>
+              <span id="contractAdress"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>

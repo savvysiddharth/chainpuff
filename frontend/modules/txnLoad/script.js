@@ -48,6 +48,9 @@ async function sendTransactions(txnOptions, batchSize, interTxnDelay) {
       let now = new Date();
       // let now = Date.now();
       txnHashesTimes.push([hash, now]);
+    }).catch(err => {
+      console.log('ERROR OCCURRED!');
+      console.log(err);
     });
     if(interTxnDelay > 0) await delay(interTxnDelay);
     if(i == batchSize-1) lastTxnProm = txnProm;
@@ -90,7 +93,7 @@ async function genLoadHandler() {
       const prom = w3.eth.getTransactionReceipt(hashTimes[i][0]);
       txnRcptsProms.push(prom);
     }
-    const rcpts = await Promise.all(txnRcptsProms)
+    const rcpts = await Promise.all(txnRcptsProms);
     console.log(rcpts);
 
     const blockProms = [];
@@ -123,8 +126,8 @@ async function genLoadHandler() {
       let latency = (timeInBlock - timeGenerated); //milliseconds interval
       allLatencies.push(latency);
       console.log(latency, "ms");
-      const txnNum = i*numTxns + j;
-      addData(myChart, txnNum, latency);
+      const txnNum = i*numTxns + j; // i is batch number
+      if(txnNum%2 == 0) addData(myChart, txnNum, latency); // no need to add all points in graph
     }
     
     for(let j=0; j<allLatencies.length; j++) {
