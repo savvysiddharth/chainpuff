@@ -13,7 +13,7 @@
 
   </head>
   <body>
-    <h1 class="hero-title">chainPuff v0.1 <span class="hero-subtitle">(beta)</span></h1>
+    <a href="../../"><h1 class="hero-title">chainPuff v0.3 <span class="hero-subtitle">(beta)</span></h1></a>
     <div class="node-adder">
       Enter Node:
       <input type="text" id="nodeAddr" placeholder="Eg: http://127.0.0.1:22000" value="http://127.0.0.1:22000">
@@ -58,8 +58,11 @@
             <p>
               <span id="contractAdress"></span>
             </p>
-          </div>
+          </div>          
         </div>
+      </div>
+      <div class="delContractBtn">
+        <button id="deployContract" onClick="localStorage.clear()">Delete Contract History</button>
       </div>
     </div>
   </body>

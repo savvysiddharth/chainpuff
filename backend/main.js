@@ -37,6 +37,10 @@ function compile(sourceCode, contractName) {
     settings: { outputSelection: { '*': { '*': ['abi', 'evm.bytecode'] } } },
   };
   const output = solc.compile(JSON.stringify(input));
+  const parsedResult = JSON.parse(output);
+  if(parsedResult.errors) {
+    
+  }
   const artifact = JSON.parse(output).contracts.main[contractName];
   return {
     abi: artifact.abi,

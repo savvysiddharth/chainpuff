@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="../../common/grid.css">
     <script src="../../common/web3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
   </head>
   <body>
     <a href="../../"><h1 class="hero-title">chainPuff v0.3 <span class="hero-subtitle">(beta)</span></h1></a>
@@ -17,11 +21,18 @@
 
     <div>
       <div class="main row">
-        <div class="col span-1-of-2 transaction-modifier">
-          <h3>Fund Transfer Transaction Payload</h3> <br>
-          <textarea class="txn-editor" id="txnInput"></textarea>
+        <div class="col span-1-of-2 select-contract">
+          <h3>Select Smart Contract</h3> <br><br>
+          <select id="selectContract">
+            <option value="0">Choose a contract</option>
+          </select>
+          <button onclick="getContractMethods()">test</button> <br><br>
+          <select id="selectMethod">
+            <option value="0">Choose a method</option>
+          </select>
         </div>
-        <div class="col span-1-of-2 transaction-load">
+        <div class="col span-1-of-2 load-options">
+          <h3>Load Options</h3> <br>
           <div class="load-input-container">
             <div class="load-input-box">
               Number of Transactions: <br>
@@ -42,10 +53,29 @@
           </div>
         </div>
       </div>
-      <div class="genTxnBtn">
-        <button id="genTxnLoad">Generate Fund Transfer Load</button>
+      
+      <div class="main row">
+        <div class="col span-1-of-2 contract-options-modifier">
+          <h3>Contract Options</h3> <br>
+          <textarea class="input-editor" id="contractOptionsInput"></textarea> <br><br>
+        </div>
+        <div class="col span-1-of-2 argument-modifier">
+          <h3>Contract Arguments: <span style="text-decoration: none; font-size: 13px;">(if any)</span></h3><br>
+          Argument: <br><br>
+          <input type="text" id="contractArguments"> <br><br>
+          <!-- <textarea class="input-editor" id="contractArguments"></textarea><br><br> -->
+          <input type="checkbox" id="rangeInputSwitch"> Use range input?  <br><br>
+          <div id="range-input">
+            MIN: <input type="number" value="0" id="minArg" disabled> MAX:<input type="number" value="100" id="maxArg" disabled>
+          </div>
+        </div>
       </div>
-      <div class="row">
+
+      <div class="genTxnBtn">
+        <button id="genLoad" onClick="genLoadHandler()">Generate Load</button>
+      </div>
+
+      <div class="main row">
         <div class="col span-1-of-2">
           <div class="stats-box">
             Average Latency : <span id="avglatency"></span> <br>
@@ -54,7 +84,7 @@
             Total Gas Used : <span id="totalgas"></span> <br>
           </div>
         </div>
-        <div class="chart-container col span-1-of-2">
+        <div class="col span-1-of-2">
           <canvas id="myChart"></canvas>
         </div>
       </div>

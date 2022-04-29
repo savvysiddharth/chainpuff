@@ -40,10 +40,10 @@ html {
   margin: 0 auto;
 }
 
-.upload-contract {
+.select-contract {
   background-color: rgb(95, 68, 29);
   padding: 9px;
-  height: 340px;
+  height: 320px;
 }
 
 .txn-editor {
@@ -56,19 +56,10 @@ html {
   /* outline: none; */
 }
 
-.compile-response {
+.load-options {
   background-color: rgb(30, 70, 88);
   padding: 10px;
-  height: 340px;
-}
-
-.compile-response .compile-result-box {
-  background-color: black;
-  width: 100%;
-  height: 285px;
-  overflow: auto;
-  padding: 5px;
-  overflow-wrap: break-word;
+  height: 320px;
 }
 
 .load-input-container {
@@ -100,18 +91,6 @@ html {
   background-color: rgb(5, 53, 45);
 }
 
-.delContractBtn {
-  margin: 10px auto;
-  width: fit-content;
-}
-
-.delContractBtn button {
-  padding: 4px 20px;
-  /* border:none; */
-  color: rgb(255, 255, 255);
-  background-color: rgb(136, 32, 41);
-}
-
 .stats-box {
   background-color: rgb(63, 63, 63);
   padding: 9px;
@@ -137,32 +116,27 @@ html {
   background-color: rgb(5, 53, 45); 
 }
 
-#contractFileInput {
-  border-radius: 10px;
-  background-color: rgb(36, 23, 23);
+
+.contract-options-modifier {
+  background-color: rgb(97, 34, 50);
+  padding: 9px;
+  height: 250px;
 }
 
-#dropArea {
-  width: 100%;
-  height: 200px;
-  background-color: rgb(136, 117, 67);
-  position: relative;
-  margin-bottom: 10px;
+.input-editor#contractOptionsInput {
+  height: 180px;
 }
 
-#dropArea span {
-  position: absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%);
-  color: rgb(214, 214, 214);
+.argument-modifier {
+  background-color: rgb(29, 95, 73);
+  padding: 9px;
+  height: 250px;
 }
 
-#dropArea.active span {
-  font-weight: bold;
-  color: rgb(240, 240, 240);
+.transaction-modifier {
+  background-color: rgb(95, 68, 29);
+  padding: 9px;
 }
-
 
 .transaction-modifier {
   background-color: rgb(95, 68, 29);
@@ -171,7 +145,7 @@ html {
 
 .input-editor {
   width: 100%;
-  height: 100px;
+  height: 150px;
   padding: 4px;
   color: rgb(71, 211, 164);
   background-color: rgb(15, 15, 15);
@@ -179,11 +153,15 @@ html {
   /* outline: none; */
 }
 
-#deployContract {
-  margin-top: 20px;  
-  margin-bottom: 20px;
+.input-editor#contractArguments {
+  height: 50px;
 }
 
-#deployResult {
-  display: none;
+
+.stats-box {
+  background-color: rgb(63, 63, 63);
+  padding: 9px;
+  width: 500px;
+  margin: 10px;
+  line-height: 30px;
 }
