@@ -1,6 +1,6 @@
 const defaultTransaction = `{
-  from: "0x5386ec99bec784de0ad4a262d89976bc385008dc",
-  to: "0xcedcc0740aebd71f6cd8d0079db7d2df9a126938",
+  from: "0xe617554372878a1db958513c068f25e6522bda27",
+  to: "0x0ce3de841dfbd23a54f6c566bd792a93defa946a",
   value: "0x100",
   gasLimit: "0x24A22",
   gasPrice: "0x0"
@@ -15,7 +15,6 @@ function stringToObject(objString) {
   const entries = objString.split(',');
   for(let i=0; i<entries.length; i++) {
     const keyValPair = entries[i].split(':');
-    // console.log(keyValPair);
     parsedObject[keyValPair[0]] = keyValPair[1];
   }
   return parsedObject;
@@ -44,9 +43,7 @@ async function sendTransactions(txnOptions, batchSize, interTxnDelay) {
   let lastTxnProm;
   for(let i=0; i<batchSize; i++) {
     const txnProm = w3.eth.sendTransaction(txnOptions).on('transactionHash', function(hash){
-      // console.log(hash);
       let now = new Date();
-      // let now = Date.now();
       txnHashesTimes.push([hash, now]);
     }).catch(err => {
       console.log('ERROR OCCURRED!');
@@ -55,11 +52,12 @@ async function sendTransactions(txnOptions, batchSize, interTxnDelay) {
     if(interTxnDelay > 0) await delay(interTxnDelay);
     if(i == batchSize-1) lastTxnProm = txnProm;
   }
-  await delay(1000); // a hacky way to make sure all txn hash are stored in txnHashes
+  await delay(1000); // to wait until all txn hash are stored in txnHashes
   return [txnHashesTimes, lastTxnProm];
 }
 
 async function genLoadHandler() {
+  makeButtonLoad("Processing...", "genTxnLoad");
   console.log('Processing...');
   myChart.destroy();
   myChart = getNewChart();
@@ -180,6 +178,7 @@ async function genLoadHandler() {
 
     await delay(batchDelay);
   }
+  makeButtonNormal("Generate Fund Transfer Load", "genTxnLoad");
 }
 
 // src : https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary

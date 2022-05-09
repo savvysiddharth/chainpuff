@@ -12,6 +12,10 @@ let COMPILED_CODE = null;
 
 let w3;
 
+function clearSelectionList(selectId) {
+  document.querySelectorAll('#'+selectId+' option').forEach(option => option.remove());
+}
+
 function stringToObject(objString) { // string has to be in json-like format, but key should not be double-quoted
   let parsedObject = {};
   objString = objString.replace(/(\r\n|\n|\r|"|{|})/gm, "").trim();
@@ -297,7 +301,7 @@ async function getContractMethods() {
   // console.log(methodList);
 
   const methodDropdown = document.getElementById("selectMethod");
-
+  clearSelectionList("selectMethod");
   // Loop through the array
   for (let i = 0; i < methodList.length; ++i) {
       methodDropdown[methodDropdown.length] = new Option(methodList[i], methodList[i]);

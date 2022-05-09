@@ -1,4 +1,4 @@
-pragma solidity ^0.8.12;
+pragma solidity ^0.4.24;
 
 contract Sorter {
     uint public size;
@@ -35,7 +35,7 @@ contract Sorter {
 	    storedData = result[2][2];
     }
 
-		function get() view public returns (uint retVal) {
-			return storedData;
-		}
+    function get() public constant returns (uint retVal) {
+        return storedData;
+    }
 }

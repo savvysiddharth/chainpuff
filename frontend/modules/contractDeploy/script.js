@@ -39,51 +39,8 @@ function stringToArray(arrString) { // string has to be in this format: [ 23, 53
   return parsedArray;
 }
 
-// function sleep(milliseconds) { // a blocking function
-//   var start = new Date().getTime();
-//   for (var i = 0; i < 1e7; i++) {
-//     if ((new Date().getTime() - start) > milliseconds){
-//       break;
-//     }
-//   }
-// }
-
-// function delay(delayInms) { // non-blocking function
-//   return new Promise(resolve => {
-//     setTimeout(() => {
-//       resolve(2);
-//     }, delayInms);
-//   });
-// }
-
-
-// async function sendTransactions(txnOptions, batchSize, interTxnDelay) {
-//   const txnHashesTimes = []
-//   let lastTxnProm;
-//   for(let i=0; i<batchSize; i++) {
-//     const txnProm = w3.eth.sendTransaction(txnOptions).on('transactionHash', function(hash){
-//       // console.log(hash);
-//       let now = new Date();
-//       // let now = Date.now();
-//       txnHashesTimes.push([hash, now]);
-//     });
-//     if(interTxnDelay > 0) await delay(interTxnDelay);
-//     if(i == batchSize-1) lastTxnProm = txnProm;
-//   }
-//   await delay(1000); // a hacky way to make sure all txn hash are stored in txnHashes
-//   return [txnHashesTimes, lastTxnProm];
-// }
-
 getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function')
 
-
-// async function genLoadHandler() {
-//   const nodeAddr = document.querySelector("#nodeAddr").value;
-//   w3 = new Web3(nodeAddr);
-
-//   const mycontract = JSON.parse(contractRawJson);
-//   console.log(mycontract);
-// }
 
 function getContractMethods() {
   const contractInstance = new w3.eth.Contract(mycontract.abi, deployedContractAddress);
@@ -91,9 +48,6 @@ function getContractMethods() {
   const arr = getMethods(contractInstance.methods);
   const methodList = arr.filter(func => func.endsWith(')'));
   console.log(methodList);
-  // console.log(contractInstance.methods);
-  // const res = await contractInstance.methods.get().call();
-  // console.log("Obtained value at deployed contract is: "+ res);
 }
 
 // sends code to backend server which returns compiled result
