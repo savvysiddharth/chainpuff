@@ -1,6 +1,6 @@
 const defaultTransaction = `{
-  from: "0xe617554372878a1db958513c068f25e6522bda27",
-  to: "0x0ce3de841dfbd23a54f6c566bd792a93defa946a",
+  from: "0x6c223339d972f2c1c1af4a087df15715098de595",
+  to: "0x9ae9d2ca08e322dbe9c71ed9011dfec48c2c0d82",
   value: "0x100",
   gasLimit: "0x24A22",
   gasPrice: "0x0"
@@ -42,8 +42,8 @@ async function sendTransactions(txnOptions, batchSize, interTxnDelay) {
   const txnHashesTimes = []
   let lastTxnProm;
   for(let i=0; i<batchSize; i++) {
+    let now = new Date();
     const txnProm = w3.eth.sendTransaction(txnOptions).on('transactionHash', function(hash){
-      let now = new Date();
       txnHashesTimes.push([hash, now]);
     }).catch(err => {
       console.log('ERROR OCCURRED!');
@@ -52,7 +52,7 @@ async function sendTransactions(txnOptions, batchSize, interTxnDelay) {
     if(interTxnDelay > 0) await delay(interTxnDelay);
     if(i == batchSize-1) lastTxnProm = txnProm;
   }
-  await delay(1000); // to wait until all txn hash are stored in txnHashes
+  await delay(4000); // to wait until all txn hash are stored in txnHashes
   return [txnHashesTimes, lastTxnProm];
 }
 
