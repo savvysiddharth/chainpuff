@@ -86,6 +86,7 @@ function isItArgFunction(funcName) {
 }
 
 async function genLoadHandler() {
+  makeButtonLoad("Sending Transactions...","genLoad");
   myChart.destroy();
   myChart = getNewChart();
   const nodeAddr = document.querySelector("#nodeAddr").value;
@@ -131,7 +132,9 @@ async function genLoadHandler() {
     const hashTimes = txnSentReturn[0];
     const lastTxnProm = txnSentReturn[1];
     console.log('waiting for them to get inside blocks');
+    makeButtonLoad("Waiting them to get in the chain...","genLoad");
     await lastTxnProm;
+    makeButtonLoad("Processing Metrics...","genLoad");
 
     const txnRcptsProms = [];
     for(let i=0; i<numTxns; i++) {
@@ -225,25 +228,8 @@ async function genLoadHandler() {
 
     await delay(batchDelay);
   }
+  makeButtonNormal("Generate Load","genLoad");
 }
-
-
-// async function sendTransactions(txnOptions, batchSize, interTxnDelay) {
-//   const txnHashesTimes = []
-//   let lastTxnProm;
-//   for(let i=0; i<batchSize; i++) {
-//     const txnProm = w3.eth.sendTransaction(txnOptions).on('transactionHash', function(hash){
-//       // console.log(hash);
-//       let now = new Date();
-//       // let now = Date.now();
-//       txnHashesTimes.push([hash, now]);
-//     });
-//     if(interTxnDelay > 0) await delay(interTxnDelay);
-//     if(i == batchSize-1) lastTxnProm = txnProm;
-//   }
-//   await delay(1000); // a hacky way to make sure all txn hash are stored in txnHashes (this includes batchdelay, so batchdelay always has to be greater than 1000ms)
-//   return [txnHashesTimes, lastTxnProm];
-// }
 
 // functions without any arguments, simple call functions
 async function sendTransactions(methodName, txnOptions, batchSize, interTxnDelay, argVal, minVal, maxVal) {
@@ -257,15 +243,15 @@ async function sendTransactions(methodName, txnOptions, batchSize, interTxnDelay
       currArg = argVal;
       if(minVal) currArg = parseInt((Math.random() * maxVal) + minVal);
       console.log('arg sent:', currArg);
+      let now = new Date();
       txnProm = contractInstance.methods[methodName](currArg).send(txnOptions).on('transactionHash', function(hash){
         // console.log(hash);
-        let now = new Date();
         txnHashesTimes.push([hash, now]);
       });
     } else {
+      let now = new Date();
       txnProm = contractInstance.methods[methodName]().send(txnOptions).on('transactionHash', function(hash){
-        console.log(hash);
-        let now = new Date();
+        // console.log(hash);
         txnHashesTimes.push([hash, now]);
       });
     }

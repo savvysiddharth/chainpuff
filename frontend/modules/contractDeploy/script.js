@@ -52,6 +52,7 @@ function getContractMethods() {
 
 // sends code to backend server which returns compiled result
 function compilationHandler() {
+  makeButtonLoad("Compiling..", "compileContract");
   const contractFileInput = document.querySelector("#contractFileInput");
   const compileResBox = document.querySelector("#compileResBox");
 
@@ -88,6 +89,7 @@ function compilationHandler() {
       COMPILED_CODE = data;
       console.log(data);
       compileResBox.innerHTML = '<pre>'+JSON.stringify(data, null, 2)+'</pre>';
+      makeButtonNormal("Compile Contract", "compileContract");
     });
   };
 }
@@ -106,6 +108,7 @@ async function deployHandler() {
       return;
     }
   }
+  makeButtonLoad("Deploying Contract..", "deployContract");
   const contractAbi = COMPILED_CODE.abi;
   const contractByteCode = COMPILED_CODE.bytecode;
   console.log(COMPILED_CODE);
@@ -130,6 +133,7 @@ async function deployHandler() {
     console.log("Address of contract: ", contractAddress);
     progressDisplay.innerHTML = contractAddress;
     localStorage.setItem(contractAddress, JSON.stringify(COMPILED_CODE));
+    makeButtonNormal("Deploy Contract", "deployContract");
   })
   .catch(console.error);
 

@@ -1,6 +1,6 @@
 const defaultTransaction = `{
-  from: "0x6c223339d972f2c1c1af4a087df15715098de595",
-  to: "0x9ae9d2ca08e322dbe9c71ed9011dfec48c2c0d82",
+  from: "0x5386ec99bec784de0ad4a262d89976bc385008dc",
+  to: "0xcedcc0740aebd71f6cd8d0079db7d2df9a126938",
   value: "0x100",
   gasLimit: "0x24A22",
   gasPrice: "0x0"
@@ -52,12 +52,12 @@ async function sendTransactions(txnOptions, batchSize, interTxnDelay) {
     if(interTxnDelay > 0) await delay(interTxnDelay);
     if(i == batchSize-1) lastTxnProm = txnProm;
   }
-  await delay(4000); // to wait until all txn hash are stored in txnHashes
+  await delay(1000); // to wait until all txn hash are stored in txnHashes
   return [txnHashesTimes, lastTxnProm];
 }
 
 async function genLoadHandler() {
-  makeButtonLoad("Processing...", "genTxnLoad");
+  makeButtonLoad("Sending Transactions...", "genTxnLoad");
   console.log('Processing...');
   myChart.destroy();
   myChart = getNewChart();
@@ -84,7 +84,9 @@ async function genLoadHandler() {
     const hashTimes = txnSentReturn[0];
     const lastTxnProm = txnSentReturn[1];
     console.log('waiting for them to get inside blocks');
+    makeButtonLoad("Waiting for them to get on chain...", "genTxnLoad");
     await lastTxnProm;
+    makeButtonLoad("Processing Metrics...", "genTxnLoad");
 
     const txnRcptsProms = [];
     for(let i=0; i<numTxns; i++) {
@@ -123,7 +125,7 @@ async function genLoadHandler() {
       const timeInBlock = blockTimes[j];
       let latency = (timeInBlock - timeGenerated); //milliseconds interval
       allLatencies.push(latency);
-      console.log(latency, "ms");
+      if(j%10 == 0) console.log(latency, "ms");
       const txnNum = i*numTxns + j; // i is batch number
       if(txnNum%2 == 0) addData(myChart, txnNum, latency); // no need to add all points in graph
     }
